@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'add_transaction_page.dart';
+import 'portfolio_page.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  int selectedIndex = 0;
+
+  final pages = [
+    const Dashboard(),
+    const PortfolioPage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        title: const Text("PARIVO"),
+        centerTitle: true,
+      ),
+
+      body: pages[selectedIndex],
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AddTransactionPage(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: (index){
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: "Ana Sayfa",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.show_chart),
+            label: "Portföy",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Dashboard extends StatelessWidget {
+  const Dashboard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        "Hoşgeldin Ümit — Kontrol sende.",
+        style: TextStyle(fontSize: 20),
+      ),
+    );
+  }
+}

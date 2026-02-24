@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'pages/home_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const ParivoApp());
+}
+
+class ParivoApp extends StatelessWidget {
+  const ParivoApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'PARIVO',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: const Color(0xFF0A84FF),
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        fontFamily: 'Inter',
+      ),
+      home: const HomePage(),
+    );
+  }
+}
